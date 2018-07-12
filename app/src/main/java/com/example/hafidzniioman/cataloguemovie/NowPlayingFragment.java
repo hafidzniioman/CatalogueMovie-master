@@ -4,12 +4,14 @@ package com.example.hafidzniioman.cataloguemovie;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.SyncHttpClient;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -28,6 +36,9 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
     EditText edtMovieName;
     Button btnSearch;
     static final String EXTRAS_MOVIE = "EXTRAS_MOVIE";
+
+//    https://api.themoviedb.org/3/movie/now_playing?api_key=<APIKEY ANDA>&language=en-US
+//private static final String API_KEY = "5243f886f5b6702c4b3483e3b188c340";
 
 
     public NowPlayingFragment(){
@@ -73,6 +84,53 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
 
         getActivity().getSupportLoaderManager().initLoader(0, bundle, this);
     }
+
+//    private static final String API_KEY = "5243f886f5b6702c4b3483e3b188c340";
+//
+//    @Nullable
+//    @Override
+//    private String movieCollection;
+//    public ArrayList<MovieItems> loadInBackground() {
+//        SyncHttpClient client = new SyncHttpClient();
+//
+//        final ArrayList<MovieItems> movieItemses = new ArrayList<>();
+//        String url = "https://api.themoviedb.org/3/search/movie?api_key=" +
+//                API_KEY + "&language=en-US&query=" + movieCollection;
+//
+//
+//        client.get(url, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onStart() {
+//                super.onStart();
+//                setUseSynchronousMode(true);
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, PreferenceActivity.Header[] headers, byte[] responseBody) {
+//                try {
+//                    String result = new String(responseBody);
+//                    JSONObject responseObject = new JSONObject(result);
+//                    JSONArray results = responseObject.getJSONArray("results");
+//
+//                    for (int i = 0; i < results.length(); i++) {
+//                        JSONObject movie = results.getJSONObject(i);
+//                        MovieItems movieItems = new MovieItems(movie);
+//                        Log.d("LIST", "on success :" + movieItems.getmoviePoster());
+//                        Log.d("LIST", "on success :" + movieItems.getMovieDescription());
+//                        movieItemses.add(movieItems);
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, PreferenceActivity.Header[] headers, byte[] responseBody, Throwable error) {
+//
+//            }
+//        });
+//        return movieItemses;
+//    }
 
     @NonNull
     @Override
@@ -121,4 +179,6 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
 
         return view;
     }
+
+
 }

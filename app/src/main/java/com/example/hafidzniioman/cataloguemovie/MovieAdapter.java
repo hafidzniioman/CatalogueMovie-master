@@ -77,7 +77,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return mData.size();
     }
 
-    @Override
+//    @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder = null;
         if (convertView == null) {
@@ -123,6 +123,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            imgMoviePoster = (ImageView) itemView.findViewById(R.id.img_movie_poster);
         }
     }
 }
